@@ -5,8 +5,11 @@ import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../firebase";
 import axios from "axios";
 import { serverURL } from "../App";
+import { useDispatch } from "react-redux";
+import { setUserData } from "../redux/userSlice";
 
 const LoginModel = ({ open, onClose }) => {
+    const dispatch = useDispatch();
     const handleGoodleAuth = async () => {
         try {
             const result = await signInWithPopup(auth, provider);
@@ -24,7 +27,11 @@ const LoginModel = ({ open, onClose }) => {
                 },
             );
 
-            console.log(data);
+            // console.log(data);
+
+            dispatch(setUserData(data));
+
+            onClose();
         } catch (error) {
             console.log(`Google auth error: ${error}`);
         }

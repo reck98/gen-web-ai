@@ -3,6 +3,7 @@ import authRouter from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { FRONTEND_URL } from "./utils/config.js";
+import userRouter from "./routes/user.route.js";
 
 const app = express();
 
@@ -18,5 +19,6 @@ app.use(
 );
 
 app.use("/api/auth", authRouter);
+app.use("/api/user", userRouter);
 
 export default app;
