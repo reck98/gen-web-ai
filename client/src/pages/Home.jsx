@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "motion/react";
+import LoginModel from "../components/LoginModel";
 
 const Home = () => {
     const highlights = [
@@ -20,6 +21,8 @@ const Home = () => {
                 "Receive scalable code with reusable components, optimized performance, and deployment-ready projects built for real-world applications.",
         },
     ];
+
+    const [openLogin, setOpenLogin] = useState(false);
     return (
         <div className="relative min-h-screen bg-[#040404] text-white overflow-hidden">
             <motion.div
@@ -34,7 +37,12 @@ const Home = () => {
                         <div className="hidden md:inline text-sm text-zinc-400 hover:text-white cursor-pointer">
                             Pricing
                         </div>
-                        <button className="px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 text-sm">
+                        <button
+                            className="px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 text-sm"
+                            onClick={() => {
+                                setOpenLogin(true);
+                            }}
+                        >
                             Get Started
                         </button>
                     </div>
@@ -63,7 +71,12 @@ const Home = () => {
                     production-ready website.
                 </motion.p>
 
-                <button className="mt-12 px-10 py-4 rounded-xl bg-white text-black font-semibold hover:scale-105 transition">
+                <button
+                    className="mt-12 px-10 py-4 rounded-xl bg-white text-black font-semibold hover:scale-105 transition"
+                    onClick={() => {
+                        setOpenLogin(true);
+                    }}
+                >
                     Get Started
                 </button>
             </section>
@@ -95,6 +108,13 @@ const Home = () => {
                 &copy; {new Date().getFullYear()} GenWeb.ai | Made with ❤️ by{" "}
                 <span className="text-white">reck98</span>
             </footer>
+
+            {openLogin && (
+                <LoginModel
+                    open={openLogin}
+                    onClose={() => setOpenLogin(false)}
+                />
+            )}
         </div>
     );
 };
