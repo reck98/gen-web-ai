@@ -3,9 +3,28 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "motion/react";
+import { useState } from "react";
+import axios from "axios";
+import { serverURL } from "../App";
 
 const Generate = () => {
     const navigate = useNavigate();
+
+    const handleGenerateWebsite = async () => {
+        try {
+            const result = await axios.post(
+                `${serverURL}/api/website/generate`,
+                { prompt },
+                { withCredentials: true },
+            );
+
+            console.log(result);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const [prompt, setPrompt] = useState("");
 
     return (
         <div className="min-h-screen bg-linear-to-br from-[#050505] via-[#0b0b0b] to-[#050505] text-white">
@@ -52,6 +71,8 @@ const Generate = () => {
 
                     <div className="relative">
                         <textarea
+                            onChange={(e) => setPrompt(e.target.value)}
+                            value={prompt}
                             placeholder="Describe your website in detail..."
                             className="w-full h-55 p-6 rounded-3xl bg=black/60 border border-white/10 outline-none resize-none text-sm leading-relaxed focus:ring-2 focus:ring-white/20"
                         ></textarea>
@@ -63,6 +84,7 @@ const Generate = () => {
                         whileTap={{ scale: 0.96 }}
                         whileHover={{ scale: 1.05 }}
                         className="px-14 py-4 rounded-2xl font-semibold text-lg bg-white text-black"
+                        onClick={handleGenerateWebsite}
                     >
                         Generate Website
                     </motion.button>

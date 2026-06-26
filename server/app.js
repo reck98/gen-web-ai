@@ -5,6 +5,7 @@ import cors from "cors";
 import { FRONTEND_URL } from "./utils/config.js";
 import userRouter from "./routes/user.route.js";
 import morgan from "morgan";
+import websiteRouter from "./routes/website.route.js";
 
 const app = express();
 
@@ -23,5 +24,6 @@ app.use(
 
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
+app.use("/api/website", websiteRouter);
 
 export default app;

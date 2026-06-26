@@ -1,3 +1,6 @@
+import extractJson from "../utils/extractJson.js";
+import { generateRespone } from "../utils/openRouter.js";
+
 export const getCurrentUser = async (req, res) => {
     try {
         if (!req.user) {
@@ -16,3 +19,18 @@ export const getCurrentUser = async (req, res) => {
         });
     }
 };
+
+// export const generateDemo = async (req, res) => {
+//     try {
+//         const data = await generateRespone("hello");
+
+//         const jsonData = await extractJson(data);
+
+//         return res.status(200).json(jsonData);
+//     } catch (error) {
+//         res.status(500).json({
+//             message: "Internal Server Error",
+//             error: `Generate Demo Error : ${error}`,
+//         });
+//     }
+// };

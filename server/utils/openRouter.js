@@ -1,6 +1,6 @@
 import { MODEL_NAME, OPENROUTER_API_KEY, OPENROUTER_URL } from "./config.js";
 
-const generateRespone = async () => {
+export const generateRespone = async (prompt) => {
     const response = await fetch(OPENROUTER_URL, {
         method: "POST",
         headers: {
@@ -31,5 +31,5 @@ const generateRespone = async () => {
 
     const data = await response.json();
 
-    return data;
+    return data.choices[0].message.content;
 };
