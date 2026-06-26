@@ -7,6 +7,7 @@ import { Coins } from "lucide-react";
 import axios from "axios";
 import { serverURL } from "../App";
 import { setUserData } from "../redux/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
     const highlights = [
@@ -31,6 +32,8 @@ const Home = () => {
 
     const [openProfile, setOpenProfile] = useState(false);
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
     const handleLogOut = async () => {
         try {
             await axios.get(`${serverURL}/api/auth/logout`, {
@@ -93,7 +96,7 @@ const Home = () => {
                                         }
                                         alt={userData.user.name}
                                         referrerPolicy="no-referrer"
-                                        className="w-8 h-8 rounded-full object-cover"
+                                        className="w-8 h-8 rounded-full object-cover cursor-pointer"
                                     />
                                 </button>
 
@@ -129,7 +132,7 @@ const Home = () => {
 
                                                 <button className="md:hidden w-full px-4 py-3 flex items-center gap-2 text-sm border-b border-white/10 hover:border-white/5">
                                                     <Coins
-                                                        size={14}
+                                                        size={16}
                                                         className="text-yellow-400"
                                                     />
                                                     <span className="text-zinc-300">
@@ -143,7 +146,12 @@ const Home = () => {
                                                     </span>
                                                 </button>
 
-                                                <button className="w-full px-4 py-3 text-left text-sm hover:bg-white/5">
+                                                <button
+                                                    className="w-full px-4 py-3 text-left text-sm hover:bg-white/5"
+                                                    onClick={() => {
+                                                        navigate("/dashboard");
+                                                    }}
+                                                >
                                                     Dashboard
                                                 </button>
                                                 <button
@@ -186,11 +194,15 @@ const Home = () => {
 
                 <button
                     className="mt-12 px-10 py-4 rounded-xl bg-white text-black font-semibold hover:scale-105 transition"
-                    onClick={() => {
-                        setOpenLogin(true);
-                    }}
+                    // onClick={() => {
+                    //     setOpenLogin(true);
+                    // }}
+
+                    onClick={() =>
+                        userData ? navigate("/dashboard") : setOpenLogin(true)
+                    }
                 >
-                    Get Started
+                    {userData ? "Go to Dashboard" : "Get Started"}
                 </button>
             </section>
 
