@@ -10,7 +10,7 @@ import Editor from "./pages/WebSiteEditor";
 import LiveSite from "./pages/LiveSite";
 import Pricing from "./pages/Pricing";
 
-export const serverURL = "http://localhost:3002";
+export const serverURL = "https://gen-web-ai-w0d9.onrender.com";
 const App = () => {
     useGetCurrentUser();
 
