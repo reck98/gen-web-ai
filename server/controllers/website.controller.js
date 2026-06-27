@@ -264,7 +264,6 @@ export const getWebsiteBySlug = async (req, res) => {
     try {
         const website = await Website.findOne({
             slug: req.params.slug,
-            user: req.user._id,
         });
 
         return res.status(200).json(website);
@@ -275,5 +274,3 @@ export const getWebsiteBySlug = async (req, res) => {
         });
     }
 };
-
-
