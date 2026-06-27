@@ -6,7 +6,8 @@ import useGetCurrentUser from "./hooks/useGetCurrentUser";
 import { useSelector } from "react-redux";
 import Dashboard from "./pages/Dashboard";
 import Generate from "./pages/Generate";
-import Editor from "./pages/Editor";
+import Editor from "./pages/WebSiteEditor";
+import LiveSite from "./pages/LiveSite";
 
 export const serverURL = "http://localhost:3002";
 const App = () => {
@@ -17,7 +18,11 @@ const App = () => {
     return (
         <BrowserRouter>
             <Routes>
+                {/* Unprotected Routes */}
                 <Route path="/" element={<Home />} />
+                <Route path="/site/:id" element={<LiveSite />} />
+
+                {/* Protected Routes */}
                 <Route
                     path="/dashboard"
                     element={userData ? <Dashboard /> : <Home />}
