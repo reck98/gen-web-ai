@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import Generate from "./pages/Generate";
 import Editor from "./pages/WebSiteEditor";
 import LiveSite from "./pages/LiveSite";
+import Pricing from "./pages/Pricing";
 
 export const serverURL = "http://localhost:3002";
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
                 {/* Unprotected Routes */}
                 <Route path="/" element={<Home />} />
                 <Route path="/site/:id" element={<LiveSite />} />
+                <Route path="pricing" element={<Pricing />} />
 
                 {/* Protected Routes */}
                 <Route

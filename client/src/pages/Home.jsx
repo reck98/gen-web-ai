@@ -60,12 +60,18 @@ const Home = () => {
                 <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
                     <div className="text-lg font-semibold">GenWeb.ai</div>
                     <div className="flex items-center gap-5">
-                        <div className="hidden md:inline text-sm text-zinc-400 hover:text-white cursor-pointer">
+                        <div
+                            onClick={() => navigate("/pricing")}
+                            className="hidden md:inline text-sm text-zinc-400 hover:text-white cursor-pointer"
+                        >
                             Pricing
                         </div>
 
                         {userData && (
-                            <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 text-sm cursor-pointer hover:bg-white/10 transition">
+                            <div
+                                onClick={() => navigate("/pricing")}
+                                className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 text-sm cursor-pointer hover:bg-white/10 transition"
+                            >
                                 <Coins size={14} className="text-yellow-400" />
                                 <span className="text-zinc-300">Credits</span>
                                 <span>{userData.user.credits}</span>
@@ -147,7 +153,7 @@ const Home = () => {
                                                 </button>
 
                                                 <button
-                                                    className="w-full px-4 py-3 text-left text-sm hover:bg-white/5"
+                                                    className="w-full px-4 py-3 text-left text-sm hover:bg-white/5 cursor-pointer"
                                                     onClick={() => {
                                                         navigate("/dashboard");
                                                     }}
@@ -156,7 +162,7 @@ const Home = () => {
                                                 </button>
                                                 <button
                                                     onClick={handleLogOut}
-                                                    className="w-full px-4 py-3 text-left text-sm hover:bg-white/5 text-red-400"
+                                                    className="w-full px-4 py-3 text-left text-sm hover:bg-white/5 text-red-400 cursor-pointer"
                                                 >
                                                     Logout
                                                 </button>

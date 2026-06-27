@@ -10,6 +10,9 @@ export const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 export const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
 export const MODEL_NAME = "deepseek/deepseek-chat";
 
+export const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
+export const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET;
+
 export const SYSTEM_PROMPT = `
 YOU ARE A PRINCIPAL FRONTEND ARCHITECT
 AND A SENIOR UI/UX ENGINEER
