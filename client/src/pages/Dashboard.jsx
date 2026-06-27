@@ -6,8 +6,10 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { serverURL } from "../App";
+import useDocumentTitle from "../hooks/useDocumentTitle";
 
 const Dashboard = () => {
+    useDocumentTitle("Dashboard - GenWeb.ai");
     const navigate = useNavigate();
     const { userData } = useSelector((state) => state.user);
     const [websites, setWebsites] = useState([]);
@@ -151,7 +153,7 @@ const Dashboard = () => {
                                             {w.title}
                                         </h3>
                                         <p className="text-xs text-zinc-400 ">
-                                            Last Updatet at{" "}
+                                            Last Updated at{" "}
                                             {new Date(
                                                 w.updatedAt,
                                             ).toLocaleDateString()}

@@ -7,6 +7,7 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import axios from "axios";
 import { serverURL } from "../App";
+import useDocumentTitle from "../hooks/useDocumentTitle";
 
 const PHASES = [
     "Analyzing your idea...",
@@ -17,6 +18,7 @@ const PHASES = [
 ];
 
 const Generate = () => {
+    useDocumentTitle("Generate Website - GenWeb.ai");
     const [prompt, setPrompt] = useState("");
     const [loading, setLoading] = useState(false);
     const [progress, setProgress] = useState(0);
@@ -127,7 +129,7 @@ const Generate = () => {
                             onChange={(e) => setPrompt(e.target.value)}
                             value={prompt}
                             placeholder="Describe your website in detail..."
-                            className="w-full h-55 p-6 rounded-3xl bg=black/60 border border-white/10 outline-none resize-none text-sm leading-relaxed focus:ring-2 focus:ring-white/20"
+                            className="w-full h-55 p-6 rounded-3xl bg-black/60 border border-white/10 outline-none resize-none text-sm leading-relaxed focus:ring-2 focus:ring-white/20"
                         ></textarea>
                     </div>
 

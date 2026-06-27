@@ -7,9 +7,11 @@ import { serverURL } from "../App";
 import { Code2, MessageSquare, Monitor, Rocket, Send, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Editor from "@monaco-editor/react";
+import useDocumentTitle from "../hooks/useDocumentTitle";
 
 const WebSiteEditor = () => {
     const [website, setWebsite] = useState(null);
+    useDocumentTitle(website?.title ? `${website.title} - GenWeb.ai` : "Editor - GenWeb.ai");
     const [error, setError] = useState("");
     const [code, setCode] = useState("");
     const [messages, setMessages] = useState([]);

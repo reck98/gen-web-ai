@@ -8,8 +8,10 @@ import axios from "axios";
 import { serverURL } from "../App";
 import { setUserData } from "../redux/userSlice";
 import { useNavigate } from "react-router-dom";
+import useDocumentTitle from "../hooks/useDocumentTitle";
 
 const Home = () => {
+    useDocumentTitle("GenWeb.ai - AI Website Builder");
     const highlights = [
         {
             title: "AI Generated Code",

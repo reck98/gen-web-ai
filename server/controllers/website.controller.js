@@ -8,7 +8,7 @@ export const generateWebsite = async (req, res) => {
     try {
         const { prompt } = req.body;
         if (!prompt) {
-            res.status(400).json({
+            return res.status(400).json({
                 message: "prompt is required",
             });
         }
@@ -16,13 +16,13 @@ export const generateWebsite = async (req, res) => {
         const user = await User.findById(req.user._id);
 
         if (!user) {
-            res.status(401).json({
+            return res.status(401).json({
                 message: "Unauthorized",
             });
         }
 
         if (user.credits < 50) {
-            res.status(402).json({
+            return res.status(402).json({
                 message: "Not enough credits",
             });
         }
@@ -44,9 +44,9 @@ export const generateWebsite = async (req, res) => {
             }
         }
 
-        if (!parsed.code) {
+        if (!parsed || !parsed.code) {
             console.log("AI returned invalid response", raw);
-            res.status(500).json({
+            return res.status(500).json({
                 message: "AI returned invalid response",
             });
         }
@@ -75,7 +75,7 @@ export const generateWebsite = async (req, res) => {
             remainingCredits: user.credits,
         });
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: "Internal Server Error",
             error: `Generate Website Error : ${error}`,
         });
@@ -108,7 +108,7 @@ export const changes = async (req, res) => {
     try {
         const { prompt } = req.body;
         if (!prompt) {
-            res.status(400).json({
+            return res.status(400).json({
                 message: "prompt is required",
             });
         }
@@ -121,7 +121,7 @@ export const changes = async (req, res) => {
         });
 
         if (!website) {
-            res.status(404).json({
+            return res.status(404).json({
                 message: "Website not found",
             });
         }
@@ -129,13 +129,13 @@ export const changes = async (req, res) => {
         const user = await User.findById(req.user._id);
 
         if (!user) {
-            res.status(401).json({
+            return res.status(401).json({
                 message: "Unauthorized",
             });
         }
 
         if (user.credits < 25) {
-            res.status(402).json({
+            return res.status(402).json({
                 message: "Not enough credits",
             });
         }
@@ -172,9 +172,9 @@ export const changes = async (req, res) => {
             }
         }
 
-        if (!parsed.code) {
+        if (!parsed || !parsed.code) {
             console.log("AI returned invalid response", raw);
-            res.status(500).json({
+            return res.status(500).json({
                 message: "AI returned invalid response",
             });
         }
@@ -201,7 +201,7 @@ export const changes = async (req, res) => {
             remainingCredits: user.credits,
         });
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: "Internal Server Error",
             error: `Changes Error : ${error}`,
         });
@@ -238,7 +238,7 @@ export const deploy = async (req, res) => {
             website.slug =
                 website.title
                     .toLowerCase()
-                    .replace(/[a^9-z0-9]/g, "")
+                    .replace(/[^a-z0-9]/g, "")
                     .slice(0, 60) +
                 "-" +
                 website._id.toString().slice(-5);
@@ -265,6 +265,12 @@ export const getWebsiteBySlug = async (req, res) => {
         const website = await Website.findOne({
             slug: req.params.slug,
         });
+
+        if (!website) {
+            return res.status(404).json({
+                message: "Website not found",
+            });
+        }
 
         return res.status(200).json(website);
     } catch (error) {

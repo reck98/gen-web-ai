@@ -8,6 +8,11 @@ import morgan from "morgan";
 import websiteRouter from "./routes/website.route.js";
 import billingRouter from "./routes/billing.route.js";
 import { stripeWebhook } from "./controllers/stripeWebhook.controller.js";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -34,5 +39,12 @@ app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/website", websiteRouter);
 app.use("/api/billing", billingRouter);
+
+const clientDist = path.resolve(__dirname, "../client/dist");
+app.use(express.static(clientDist));
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(clientDist, "index.html"));
+});
 
 export default app;

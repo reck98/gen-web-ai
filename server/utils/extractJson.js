@@ -11,9 +11,9 @@ const extractJson = async (raw) => {
 
     if (firstBracket === -1 || lastBracket === -1) return null;
 
-    const jsonStirng = cleaned.slice(firstBracket, lastBracket + 1);
+    const jsonString = cleaned.slice(firstBracket, lastBracket + 1);
 
-    return JSON.parse(jsonStirng);
+    return JSON.parse(jsonString);
 };
 
 export default extractJson;

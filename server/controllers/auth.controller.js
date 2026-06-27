@@ -7,7 +7,7 @@ export const googleAuth = async (req, res) => {
         const { name, email, avatar } = req.body;
 
         if (!email) {
-            res.status(400).json({ message: "Email is required" });
+            return res.status(400).json({ message: "Email is required" });
         }
 
         let user = await User.findOne({ email });

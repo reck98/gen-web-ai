@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { serverURL } from "../App";
+import useDocumentTitle from "../hooks/useDocumentTitle";
 
 const plans = [
     {
@@ -54,6 +55,7 @@ const plans = [
 ];
 
 const Pricing = () => {
+    useDocumentTitle("Pricing - GenWeb.ai");
     const navigate = useNavigate();
     const { userData } = useSelector((state) => state.user);
 
