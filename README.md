@@ -1,7 +1,7 @@
 # GenWeb.ai - AI Website Builder
 
 <p align="center">
-  <img src="client/public/dashboard.png" alt="GenWeb.ai Dashboard Preview" width="800"/>
+  <img src="assets/dashboard.png" alt="GenWeb.ai Dashboard Preview" width="800"/>
 </p>
 
 <p align="center">
@@ -188,7 +188,7 @@ The server automatically serves the built client from `client/dist/` when `NODE_
 ## Screenshots
 
 <p align="center">
-  <img src="client/public/dashboard.png" alt="Dashboard" width="90%"/>
+  <img src="assets/dashboard.png" alt="Dashboard" width="90%"/>
   <br/>
   <em>Dashboard — manage your generated websites</em>
 </p>
